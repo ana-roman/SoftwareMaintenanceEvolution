@@ -1,0 +1,42 @@
+\noindent The present document is meant to explore and analyze an open-source software. The initial analysis has been developed while simultaneously studying the software and all the available sources of information online. In the following sections we discuss the software and its main functionalities, the derived requirements as well as the model hypotheses based on the top-down model of program comprehension, with the purpose of understanding the scope and context of the software, the high-level architecture and design patterns.
+A list of the online sources that have been used for the creation of this document can be found in the Appendix section (\S\ref{sec:appendix}). 
+% INTRODUCTION
+\section{Open-source software: OptaPlanner}
+The OSS that we will be analyzing is called \textbf{OptaPlanner}\footnote{OptaPlanner official website: \url{https://www.optaplanner.org/}}, an \textit{AI} constraint solver which optimizes planning and scheduling problems \footnote{As can be noted on the official website, see 1}. In this section we will present a brief overview of the OSS at hand, based on the information extracted from the official website and an initial run of the program on a local machine. Moreover, we will also provide some information on the main stakeholders of the software.
+\subsection{What is OptaPlanner?}
+OptaPlanner is an open-source software released under the Apache Software License and written in \verb!Java!. The goal of OptaPlanner is to solve constraints-defined problems. It does so by trying to find ways for planning of resources so that costs can be minimized and the quality of services to be maximized.
+In more elaborate terms, it is a platform that offers quick and efficient solutions to several NP-complete problems. An NP-complete problem can be \textit{verified} quickly, however, finding a \textit{solution} quickly is not possible. For example, planning to meet at a time that suits every individual in a group of people is an NP-complete problem.\\\\
+% \begin{enumerate}[label=(\alph*)]
+%     \item planning to meet at a time that suits every individual in a group of people
+%     \item creating a working schedule that is compatible with the employees' disposition
+%     \item assigning tasks within an organization
+%     \item creating the route of a vehicle so that it benefits the environment and minimizes the costs of the driver 
+% \end{enumerate}
+The \textbf{end-user} of this software is the group of people that would like to solve problems in which it is important that a common solution is found between the entities of the domain and there will be no clashes with the main requirements. The requirements are the constraints that the entities impose on the solution. 
+The OptaPlanner software can be useful for tackling common everyday life problems such as planning a dinner party with several guests who have clashing schedules. The constraints in this domain are the schedules of each one of the guests. The goal would be to find a timeslot where all the guests can be present. \\\\
+OptaPlanner can also be used to solve more technical problems such as the N-queens problem. Given an \verb!nxn! chessboard and \textit{n} queens, the software should place the queens on the chessboard in such a way that none of them can attack one another.
+OptaPlanner uses \textbf{optimization algorithms} to provide efficient solutions to NP-problems. The users can \textbf{input} the type of problem that they are seeking a solution for, alongside the constraints that should be met, and OptaPlanner renders (at least) one possible solution as the \textbf{output}.\\\\ 
+Currently, the OptaPlanner team has developed \textit{22} built-in example problems for which OptaPlanner can provide a solution. When the user runs the example application, a simple interface will appear (Figure \ref{fig:OP_UI}), with all the possible scenarios for the user to choose from.
+The user is prompted to select the preferred scenario, and upon doing so he can follow the instructions on how to upload the necessary file(s) which describes the (NP-) problem that requires a solution. OptaPlanner initiates the solution almost immediately and within a few short moments, will present the most optimal solutions.
+\subsection{Stakeholders}
+We have compiled an initial list of stakeholders of the system, based on the information that was available on the OptaPlanner website. Note that this list is subject to change as we delve further into our analysis.
+\begin{itemize}
+
+    \item \textbf{Product owner}\\
+    The product owner of the software is a company called Red Hat 
+    \footnote{Red Hat official website: \url{https://www.redhat.com}}.
+    They are the sponsors of the project, as stated on the OptaPlanner website.
+    
+    \item \textbf{The development team}\\
+    They are the people that have developed the software, and that bring contributions to the already existing code. There is quite a large community that works on maintaing OptaPlanner, and they are all employed by the Product Owner.
+    
+    \item \textbf{The users}\\
+    The users of the system can be anyone who has a constraint satisfaction problem to solve. OptaPlanner has tailored solutions for problems that are concerned with scheduling, management of resources and of goods. As such, the following users have the most benefit from the software: hospitals, univeristies, logistic companies, but also small businesses or people who want to have an optimal planning for their events.
+    
+    \item \textbf{Other developers}\\
+    Since OptaPlanner is an open-source project, everyone has access to the source code and has the ability to reuse it. As such, developers can add extra features, can improve already existing ones or can reuse parts of the code.
+\end{itemize}
+\subsection{Example model for OptaPlanner}
+In order to get a better understanding of how OptaPlanner works, we will present an example application for a problem model. The input problem is the \textit{NQueens} problems.
+Given an \textit{NxN} chessboard and \textit{N} queens, it should be possible to place all the queens in such a way that they cannot attack one another. The constraint is that in a chessboard, a queen can move in a straight line vertically, horizontally, or diagonally. 
+Thus, the output of this problem will be the placement of all the queens in the chessboard without the possibility of attacking one another.

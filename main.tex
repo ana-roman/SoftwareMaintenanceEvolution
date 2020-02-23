@@ -1,0 +1,124 @@
+\documentclass{article}
+
+\usepackage{a4wide}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage[procnames]{listings}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{changepage} 
+
+
+
+\newcommand{\cb}[1]{\colorbox{backcolour}{#1}}
+ \newcommand{\todo}[1]{\textcolor{red}{#1}}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour}, 
+    language = sql,
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,   
+    numbers=left,
+    % breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbersep=3pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\usepackage[most]{tcolorbox} 
+\definecolor{block-gray}{gray}{0.95}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{mainCol}{RGB}{121, 31, 121}
+\definecolor{comments}{RGB}{69, 110, 46}
+\definecolor{backcolor2}{RGB}{241, 239, 248}
+
+\newtcolorbox{zitat}[2][]{%
+    colback=block-gray,
+    grow to right by=-10mm,
+    grow to left by=-10mm, 
+    boxrule=0pt,
+    boxsep=0pt,
+    breakable,
+    enhanced jigsaw,
+    borderline west={4pt}{0pt}{gray},
+    title={#2\par},
+    coltitle={black},
+    attach title to upper={}
+    #1,
+}
+
+
+\title{Software Maintenance and Evolution}
+\author{
+    Evi Xhelo S3202267 \\
+    Ana Roman S2763753 
+        }
+
+\begin{document}
+% TITLE PAGE
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\center
+\textsc{\Large University of Groningen \\
+Software Maintenance and Evolution}\\[0.3cm]
+{\large Final assignment}\\[1.5cm]
+% %TITLE
+% \HRule \\[0.4cm]
+% { \Large Understanding OptaPlanner}\\[0.4cm] % Title of your document
+% \HRule \\[1.5cm]
+~
+\centering
+%LOGO
+\includegraphics[scale=0.5]{figures/logo.png}\\[4cm]
+%PEOPLE
+\begin{minipage}{0.4\textwidth}
+\centering
+\emph{Authors:}\\
+Ana Roman S2763753\\
+Evi Xhelo S3202267
+\end{minipage}\\[1.5cm]
+\vfill
+\end{titlepage}
+%%%%%%%%%%% COMMENTED OUT TO MAKE IT BUILD FASTER
+% \maketitle
+% \input{introduction.tex}
+% \input{analysis.tex}
+% \input{steps/step1.tex}
+% \input{steps/step2/first_parts.tex}
+% \input{steps/step2/components.tex}
+% \input{steps/step2/dependencies.tex}
+% \input{steps/step2/last-part.tex}
+% \input{steps/step2/suggestions.tex}
+\input{steps/step3.tex}
+\input{steps/step4.tex}
+
+\clearpage
+\input{appendix.tex}
+
+\clearpage
+\bibliography{ref}
+\bibliographystyle{apalike}
+
+
+\end{document}

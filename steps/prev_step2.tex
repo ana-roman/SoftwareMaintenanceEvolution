@@ -1,0 +1,19 @@
+% Reverse Engineering a software is not an easy task. Since no two applications are the same, there is no clear or optimal path that we can follow when reverse enginerring. Analysing the architecture of the software is helpful when trying to do so - from here, the main components can be extracted, as well as the structure of the classes and the dependencies. \\
+% In our analysis, we will start first by listing a few assumptions that we make before diving into the code. Then, we will take a look at the documentation and try to find as much information as we can from there. Fortunately, the documentation of the software that our group chose was very detailed, and, at the moment of writing, up to date with the state of the system. As such, we could use the documentation as well as the source code to perform the reverse engineering process.
+
+% \subsection{Scenario: Cloud Balancing example}
+% The software comes together with a multitude of examples of how the code can be reused 
+% \footnote{The list of example applications can be seen in the official GitHub repository:\\
+% \url{https://github.com/kiegroup/optaplanner/tree/master/optaplanner-examples/src/main/java/org/optaplanner/examples}}. Moreover, the examples are also explained and analysed in depth in the User Guide of the software.\\
+% We can start our analysis by first reading the User Guide and going through the instructions for the different use cases. The documentation is very detailed, and it gives in-depth explanations about the code, and as such, we found this a good starting point. \\\\
+
+% This example is quite a simple, straightforward one: given a list of computers that have some given resources, the task is to assign a number of processes to each computer while satisfying the resource constraints of each process and computer. As a soft constraint, there is also the goal of minimizing the total maintenance cost. 
+%
+% A S S U M P T I O N S
+%
+
+% \subsection{Assumptions}
+% Before analysing the code and using any tools that will help us reverse-engineer the system, we can first make some assumptions about what we can expect from the software, based on the quality attributes that we have found as well as other resources, such as the documentation. \\\\
+% First of all, integrability and configurability are key quality attributes of our system, as mentioned in section 2.1. As such, we can make an assumption that the software has been built in such a way that these attributes are prioritized, and that the code in structured specifically such that it becomes easy to integrate and configure. \\
+% In order to achieve this, we expect the system to be modular, organized in packages and/or modules that should be easy to configure, such that they can be used 'out-of-the-box', without having to inspect the inner workings of the classes or making adjustments to the code.
+% \textcolor{red}{Write more when more stuff comes up}

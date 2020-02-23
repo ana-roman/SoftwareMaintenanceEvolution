@@ -1,0 +1,21 @@
+\section{Analysis process}
+This section is concerned with the process of our analysis for the OptaPlanner software. We will provide some insight as to how we approached the four tasks, from the top-down model all the way to the design quality analysis.
+\subsection{Step 1}
+Analyzing big software is not a trivial task and therefore requires careful consideration of the available resources at hand, so that good results can be obtained at a reasonable time.  For the first iteration of the analysis, our team focused its attention on the \textit{top-down} approach to program comprehension: becoming acquainted with the system, understanding and experiencing its key functionalities first-hand so that several hypotheses can be formalized. Rendering a considerably precise first step is crucial to the follow-up step: source code analysis.
+\\\\
+The first step we took was to visit the official webpage of the software. From there, we downloaded the software at hand, given the instructions on the user guide. The webpage also points to other sources of information such as tutorial videos and \verb!GitHub! repositories. After considerate familiarization with the example application itself, we delved into the user guide. The latter is mainly concerned with the implementation details of the system, therefore we deem it a relevant source of information for the steps to come. Nonetheless, we were able to discern, what we believe to be, some of the main quality attributes of the system (\S\ref{subsec:ASR}), which can be used to discern architecturally significant requirements.
+\subsection{Step 2}
+For step 2, the main process of our analysis procedure was working simultaneously with the source code and the dependency graphs of \verb!Structure 101!, in order to understand how the classes are related to another. This proved helpful in discerning some of the tasks of the packages. 
+We understood that OptaPlanner provides the source code of some example applications that have been implemented by the OptaPlanner team and the source code of the \textit{core}, that is, the implementation of the system and its functionalities. We came to the conclusion that if we want to understand the OptaPlanner system, then our analysis process should continue with the study of the core.\\\\
+From the outset, it was rather clear to us that there were three key components: an API and two other systems. However, figuring out what exactly were their goals and how those goals were implemented proved more difficult. Furthermore, the development team of OptaPlanner has relied substantially on generic classes, which can be difficult to trace using a simple IDE. This is where \verb!Structure 101!’s generation of Architecture Diagrams proved very useful. We were able to note how classes co-operated with one another, in terms of what class called, extended and/or implemented which class. We also used the architecture diagrams to understand the dependencies between the components themselves. The initial analysis process was long for several reasons:
+\begin{enumerate}[label=(\roman*)]
+    \item some classes were better documented than others
+    \item the user guide of OptaPlanner are focused on helping new developers use OptaPlanner to define their own problems as opposed to helping them understand the low-level implementation details of the system
+    \item there were numerous cyclic dependencies among packages, which amounted for additional complexity of the system
+    \item lack of expertise with \verb!Structure 101!
+\end{enumerate}
+Nonetheless, we believe that we were able to grasp a fair (intermediate) understanding of the system, its goals and its most important classes.
+\subsection{Step 3}
+    \textcolor{red}{TODO}
+\subsection{Step 4}
+    \textcolor{red}{TODO}

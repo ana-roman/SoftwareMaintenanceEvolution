@@ -1,0 +1,23 @@
+\subsection{Coupling between components}
+            According to the definition
+            \footnote{Coupling definition: \cb{
+            \url{https://en.wikipedia.org/wiki/Coupling\_(computer\_programming)}}}:
+            \begin{adjustwidth}{1.5cm}{}
+                \textit{coupling is the degree of interdependence between software modules; a measure of how closely connected two routines or modules are; the strength of the relationships between modules.}
+            \end{adjustwidth}
+            Tight coupling in a software system can be associated with more interdependency between components, more coordination and more information flow; on the other hand, low coupling can be associated with less interdependency, coordination and information flow. \\
+            Tightly coupled systems can have the following characteristics, often seen as disadvantages:
+            \begin{enumerate}
+                \item A change in one module can cause a ripple effect of changes in other modules 
+                \item Assembly of modules will take considerably longer time thanks to the increased interdependency between them and the high flow of information
+                \item Using a single module as a standalone might be difficult due to other modules also being needed.
+            \end{enumerate}
+            Looking at these characteristics, we can motivate the general idea that good design usually is related to loose coupling in the system.\\\\
+            In order to analyze the design quality of the system, we have to analyze the coupling between its components. As such, we will make use of two metrics, namely \texttt{FANIN} and \texttt{FANOUT}. These two metrics were borrowed from logic circuit design, and they represent the number of occurrences of a class (how many times a class is being called) and the number of classes a certain class calls in its definition. They can be used to indicate the extent to which a component is independent, as well as how much responsibility is has.\\
+            When describing packages, we can talk about two types of coupling:
+            \begin{enumerate}
+                \item \textbf{Afferent coupling AC}\\
+                The number of packages that depend upon classes in a certain package. It indicates the package's responsibility.
+                \item \textbf{Efferent coupling EC}\\
+                The number of packages that the classes in a package depend upon. It indicates the package's independence.
+            \end{enumerate}
