@@ -95,7 +95,7 @@ java -jar DesigniteJava.jar -i optaplanner -o designite-output   \end{lstlisting
                 \caption{Distribution of classes with a high LCOM score value in the \cb{optaplanner-core/impl} folder}
                 \label{fig:lowcohesion}
             \end{figure}
-            From this figure, we can see that the two locations \cb{impl.score} and \cb{impl.testdata.domain} contain the most classes that have a low cohesion (13 and 12 respectively) and should therefore be the first candidates to refactor, in order to increase the cohesion of the system. Inside these two folders, there were 8 classes whose LCOM score was 1 - meaning that they are totally non-cohesive, and that are difficult to maintain and they also add to the technical debt of the project. Outside these two locations, there were 3 other classes with an LCOM score of 1. The classes can be found at the following locations:                    \todo{mention here if these classes were already mentioned before?}
+            From this figure, we can see that the two locations \cb{impl.score} and \cb{impl.testdata.domain} contain the most classes that have a low cohesion (13 and 12 respectively) and should therefore be the first candidates to refactor, in order to increase the cohesion of the system. Inside these two folders, there were 8 classes whose LCOM score was 1 - meaning that they are totally non-cohesive, and that are difficult to maintain and they also add to the technical debt of the project. Outside these two locations, there were 3 other classes with an LCOM score of 1. The classes can be found at the following locations:              
             \begin{itemize}
                 \item \cb{org.optaplanner.core.impl.partitionedsearch.TestdataFaultyEntity.java}
                 \item \cb{org.optaplanner.core.impl.domain.common.accessor.MemberAccessorFactory.java}
@@ -174,4 +174,4 @@ java -jar DesigniteJava.jar -i optaplanner -o designite-output   \end{lstlisting
             A reason why this smell could occur is that the members of one abstractions are misplaced in a different abstraction, making the first one depend on the second and thus resulting in a cyclic dependency. Another reason could be that a class passes a self reference in a method call (for example, using \texttt{doSomething(this)}. \\\\
             The way to solve this design smell is by breaking the dependency cycle. One possible solution could be to introduce an interface for one of the abstractions in the cycle. Another possible solution would be to move the code that introduces the dependency to a different abstraction. Or, if possible, to merge the abstractions that are cyclically dependent into a single one.
         \end{itemize}
-    \subsection{Code, design and architectural smells}
+ 

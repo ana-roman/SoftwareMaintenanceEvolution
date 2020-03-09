@@ -60,8 +60,14 @@ $ mvn sonar:sonar
                         The difference in size between those three packages was to be expected, since the biggest folder contains all the implementation details of the algorithms, while the other two are only concerned with the interfaces to the implementation.\\
                         In this package, the file with the most LOCs has 1048, and can be found at: \\ 
                         \cb{core/impl/domain/solution/descriptor/SolutionDescriptor.java}. \\
-                        This number is very high, making this a very long class compared to the rest of the project, where most files have under 200 LOCs.
-                        
+                        This number is very high, making this a very long class compared to the rest of the project, where most files have under 200 LOCs.\\\\
+                        An overview of the LOC in the \cb{core} folder can be seen in Figure \ref{fig:loccore}
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[scale=0.6]{figures/step3/locfiles.PNG}
+                            \caption{LOC in \cb{core}}
+                            \label{fig:loccore}
+                        \end{figure}
                         \item[-] The second biggest package is 
                         \cb{optaplanner-examples} with 41,450 LOCs; out of the 22 examples, the Conference Scheduling
                         \footnote{\url{https://docs.optaplanner.org/7.32.0.Final/optaplanner-docs/html\_single/index.html\#conferenceScheduling}}
@@ -81,7 +87,6 @@ $ mvn sonar:sonar
                     The most classes are contained in the same package, with a total of 861, with the \cb{impl} folder containing 674, \cb{api} with 116 and \cb{config} with 71. \\
                     Most of the files in the project contain one class, indicating a good design since having too many classes declared in a single file could be a potential code smell (more about this later on). However, one folder stood out where most files contained 2 or 3 classes. In the following folder
                     \\ \cb{core/impl/domain/valuerange/buildin/composite/}, most files contain more than one class. This is due to the fact that the developers needed a way to enrich the basic types in Java with extra information, and created their own Object types from the standard ones. 
-                    \textcolor{red}{TODO maybe add a graph for this folder}
                     \\ For example, the file \cb{core/impl/domain/valuerange/buildin/primint/IntValueRange.java} contains three classes used to iterate through the elements in a specific interval of integer values. 
                 \item \textbf{Comment lines}\\
                     The \cb{optaplanner-core} package contains 8,007 comment lines, taking up 13.2\% of the total size of the code. Unlike the other metrics mentioned above, the component with the most comments is the \cb{api} one, with 4,303, followed by \cb{impl}. This is due to the fact that the APIs are the interfaces that connect the implementation of the software with the 'outside world'. They are the point of communication for the other developers, and as such, need to be properly explained and documented so that they can be understood by the developers who do not know about the inner workings of the system. Having well documented and commented APIs is a great advantage and helps a lot with our key drivers of Maintainability and Integrability, since they allow the system to be easily used, maintained and integrated without having to first study the code or the implementation that lies within.
@@ -89,7 +94,6 @@ $ mvn sonar:sonar
             From the size analysis, it is quite clear that the biggest folder is \cb{optaplanner-core/impl}, which contains the most LOC, most functions and statements and the most files. This was to be expected, since this folder contains the implementation details of the software, thus the implementation of the algorithms that are the foundation of the project. The fact that the developers have implemented these complex algorithms themselves explains the big size of the folder; moreover, they focused also on optimization and performance, so the algorithms can be tweaked and adapted to a high number of situations. As such, a lot of work in terms of LOC needed to be done to achieve this.
         
         \subsubsection{Complexity}
-            \textcolor{red}{TODO: Graph}
             SonarQube can, according to the documentation, analyse two types of complexity metrics: 
             \begin{itemize}
                 \item \textbf{Cyclomatic complexity} \\
@@ -97,9 +101,23 @@ $ mvn sonar:sonar
                 By further exploring the package, we have come across the following scores:
                 \begin{itemize}
                     \item[-] The \cb{impl} folder is the most complex, with a score of almost 7000. Again, this is expected, since this component is the biggest and the most important for the project. 
-                    \item[-] The complexity of the other two packages is 1483 for \cb{api} and 1855 for \cb{config}. 
+                    \item[-] The complexity of the other two packages is 1483 for \cb{api} and 1855 for \cb{config}.\\
+                    An overview of the three folders together with their complexities can be seen in Figure \ref{fig:corecyclomatic}
+                    \begin{figure}[H]
+                        \centering
+                        \includegraphics{figures/step3/cyclomaticcomplexitycore.PNG}
+                        \caption{Total cyclomatic complexity of the folders in \cb{core}}
+                        \label{fig:corecyclomatic}
+                    \end{figure}
                     \item[-] In the \cb{impl} folder, the package with the highest complexity is \cb{score}, with a complexity of 2801. This component helps give a score (weight) to a computed solution, and the complexity of this task comes from the big number of constraints that need to be satisfied when solving a problem, and how well the solution fits the constraints. At the same time, the score needs to keep track at all times of the domain of the problem, the heuristics, the type of search that is being used, and so on. In order to do this, it makes use of other components to compute the score, making it highly complex.
                     \item[-] The next two most complex folders are \cb{heuristic} - 1566 and \cb{domain} - 1382. These two are components that the algorithms need in order to find an optimal solution, and they hold the information that is fed into the algorithms, as well as the details about how the algorithms should behave (what kind of search heuristic should be used, for example). Since these two components are crucial to the software, it was expected that they were also fairly complex. 
+                    \item An overview of the components inside the \cb{core.impl} folder and their complexities can be seen in Figure
+                    \begin{figure}[H]
+                        \centering
+                        \includegraphics{figures/step3/cyclomaticcomplexityimpl.PNG}
+                        \caption{Total cyclomatic complexity of the folders in \cb{core.impl}}
+                        \label{fig:my_label}
+                    \end{figure}
                 \end{itemize}
                 
                 \item \textbf{Cognitive complexity}\\
@@ -110,7 +128,23 @@ $ mvn sonar:sonar
                     
                     \item[-] The \cb{api} folder has a given complexity score of 608, the lowest of the three. This is also a good sign, since, mentioned before, this folder contains the interfaces that other parties can use in order to interact with the software. It should be as simple and as intuitive as possible, well documented and commented, to make the reuse of the other underlying code as easy and as fast as possible. The low complexity of these files could also positively influence maintainability. 
                     
+                    \item[-] An overview of the complexity of the three folders can be seen in Figure \ref{fig:cognitivecomplexitycore}
+                    \begin{figure}[H]
+                        \centering
+                        \includegraphics[scale=0.8]{figures/step3/cognitivcomplexitycore.PNG}
+                        \caption{Cognitive complexity in \cb{core}}
+                        \label{fig:cognitivecomplexitycore}
+                    \end{figure}
+                    
                     \item[-] Inside the \cb{impl} folder, the most complex components are \cb{domain}, \cb{heuristic} and \cb{score}. These are the same folders that also had a high cyclomatic complexity, and it was to be expected that they were also the most cognitively complex, with a score of around 1000 each. The same reasoning as before can be applied for this complexity as well.
+                    
+                    \item[-] An overview of the components inside the \cb{core.impl} folder can be seen in Figure \ref{cognitivecomplexityimpl}
+                    \begin{figure}[H]
+                        \centering
+                        \includegraphics[scale=0.8]{figures/step3/cognitivecomplexityimpl.PNG}
+                        \caption{Cognitive complexity in \cb{core.impl}}
+                        \label{fig:cognitivecomplexityimpl}
+                    \end{figure}
                      
                 \end{itemize}
                 
@@ -134,7 +168,6 @@ $ mvn sonar:sonar
             \end{figure}
             
             From the figure, we find the following: 
-            \textcolor{red}{TODO: Maybe explain this a bit more he wants to see this}
             \begin{itemize}
                 \item[-] There is a high number of duplicated LOC in two big files. They both have 169 duplicated LOC contained in 6 blocks. Those two classes are: 
                 \begin{enumerate}
@@ -151,11 +184,23 @@ $ mvn sonar:sonar
             However, the project that we chose has a rather low number of duplicated lines, given its size and the complexity.
          
         \subsubsection{Code Smells}
-            \textcolor{red}{TODO: Graphs}\\
             By definition, code smells are characteristics of the code that could possibly indicate a deeper problem. Sometimes, the smells can be rather superficial and only surface issues, such as a variable not following the given naming convention. But other times, code smells can also indicate deeper issues, such as classes that are overly complex or are badly designed. As such, finding these code smells, analysing them and trying to solve them is a good way to ensure that the code is more maintainable and, by solving them early, we could prevent them from evolving into actual bugs. 
             \\ \\
-            According to SonarQube, the project has 3,420 total smells, out of which 2,313 are in the \cb{optaplanner-core} package. In total, the accumulated debt of the project is 96 days (meaning that it would take one developer 96 days to fix all of the code smells). However, the debt ratio is very low - only 1.5\%, and because of this, the rating of the project with regards to Maintainability is A.\\
-            We expected that, in the \cb{core} package, the \cb{impl} folder should have the most code smells, due to the nature of the code inside this folder, as well as the complexity which we have discussed previously. And indeed, the folder has 1532 code smells, three times as much as each of the other two folders. \\\\
+            According to SonarQube, the project has 3,420 total smells, out of which 2,313 are in the \cb{optaplanner-core} package. In total, the accumulated debt of the project is 96 days (meaning that it would take one developer 96 days to fix all of the code smells). However, the debt ratio is very low - only 1.5\%, and because of this, the rating of the project with regards to Maintainability is A. An overview of the distribution of the code smells in the \cb{core} package's three main folders can be seen in Figure \ref{fig:numberofcodesmells}.
+            \begin{figure}[H]
+                \centering
+                \includegraphics{figures/step4/step4.2/numberofcodesmells.PNG}
+                \caption{Distribution of code smells in the \cb{core} package}
+                \label{fig:numberofcodesmells}
+            \end{figure}
+            We expected that, in the \cb{core} package, the \cb{impl} folder should have the most code smells, due to the nature of the code inside this folder, as well as the complexity which we have discussed previously. And indeed, the folder has 1532 code smells, three times as much as each of the other two folders. 
+            An overview of the distribution of code smells inside the \cb{core.impl} folder can be seen in Figure \ref{fig:codesmellimpl}.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.8]{figures/step4/codesmellsimpl.PNG}
+                \caption{Caption}
+                \label{fig:codesmellimpl}
+            \end{figure}
             When analysing the code smells and further investigating what they are and where they occur, we have found the following: 
             \begin{itemize}
                 \item The first smell that we have come across was the fact that a generic variable contained an unexpected character. When looking through the project, we observed that the developers hold a certain convention when typing generics, namely using the character \cb{$\_$} at the end of a variable, like so: \cb{variable$\_$}. This has been picked up by SonarQube as a code smell, and it is quite present everywhere in the project where generics are declared or used. Figure \ref{fig:smell4} gives an example of such an occurrence: 
@@ -201,6 +246,41 @@ $ mvn sonar:sonar
                     \label{fig:smell5}
                 \end{figure}
             \end{itemize}
+            
+        \subsubsection{Bugs}
+            Despite the high number of code smells in the codebase, we have found that there are very few bugs for a project of this size. In total, the project only has 46 bugs.
+            \begin{enumerate}
+                \item \textbf{Critical bugs}\\
+                In the whole project there was only one critical bug - a division by 0 which was not entirely checked. The tool was very good in capturing this bug. The piece of code responsible can be seen in Figure \ref{fig:criticalbug}. The estimated time required to solve this bug is approximately 5 minutes - so the developers should have this as a very high priority on the TODO list.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[scale=0.8]{figures/criticalbug.JPG}
+                    \caption{The only critical bug found in the whole project.}
+                    \label{fig:criticalbug}
+                \end{figure}
+                
+                \item \textbf{Major bugs}\\
+                In total, there were 13 major bugs in the project. Six of them can be found in the class: \cb{core/api/score/stream/Joiners.java}, and they are all concerned with the same bug: the developers gave a method a reserved name without mentioning if it is an override - and this can cause unexpected behavior. An example of such an occurrence can be seen in Figure \ref{fig:majorbug}. The rest of the major bugs were of similar nature.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[scale=0.8]{figures/majorbug.JPG}
+                    \caption{An example of a major bug}
+                    \label{fig:majorbug}
+                \end{figure}
+                
+                \item \textbf{Minor bugs}\\
+                The project had a total of 32 minor bugs. The class with the most bugs had 6, and they were all concerned with the missing typecasting of variables when performing arithmetical operations. Two such examples can be seen in Figure \ref{fig:minorbugs}.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[scale=0.8]{figures/minorbug.JPG}
+                    \caption{Example of a minor bug}
+                    \includegraphics[scale=0.8]{figures/minorbug2.JPG}
+                    \caption{Examples of minor bug}
+                    \label{fig:minorbugs}
+                \end{figure}
+            \end{enumerate}
+            
+            As mentioned before, we believe that the severity of these bugs together with the relatively low number indicate a very good code quality and that the developers should strive to continuously maintain the project in order to adhere to the same high standards.
         
         \subsubsection{Coverage}
             According to the tool, our analysed software has 0\% coverage, meaning that there are no unit tests whatsoever and that none of the classes/modules/methods are tested. Investigating why this could happen, we have come up with the following possible reasons:
